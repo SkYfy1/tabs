@@ -1,0 +1,13 @@
+import TabsContainer from "@/components/TabsContainer";
+import React, { ReactNode } from "react";
+
+const Layout = ({ children }: { children: ReactNode }) => {
+  return (
+    <div className="pt-20 ml-12">
+      <TabsContainer />
+      <main className="bg-gray-200 h-[1000px] p-5">{children}</main>
+    </div>
+  );
+};
+
+export default Layout;
