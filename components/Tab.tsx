@@ -4,35 +4,45 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import Image from "next/image";
 import withAnimation from "@/lib/hoc";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export const Tab = ({
   tab,
   handlePin,
+  className,
+  handleDelete,
 }: {
   tab: TabType;
   handlePin: (title: string) => void;
+  handleDelete: (title: string) => void;
+  className?: string;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [hover, setHover] = useState(false);
   const pathname = usePathname();
   const isActive = `/${tab.title}` === pathname;
   return (
     <div
-      className="flex border-t items-center h-full"
+      className={cn(
+        "flex border-t items-center h-full w-fit max-w-44",
+        className
+      )}
       style={{
-        color: isActive ? "#000000" : "#99a1af",
-        background: "#ffffff",
         borderTopColor: isActive ? "#4690E2" : "#e5e7eb",
       }}
     >
       <Popover open={isOpen} onOpenChange={setIsOpen}>
-        <PopoverTrigger>
+        <PopoverTrigger onMouseEnter={() => setHover(true)}>
           <Link
             onContextMenu={(e) => {
               e.preventDefault();
               setIsOpen((prev) => !prev);
             }}
             href={tab.title}
-            className="my-3 border-gray-200 flex gap-2 items-center px-4 border-r"
+            className={cn(
+              "my-3 border-gray-200 flex gap-2 items-center px-3 border-r",
+              className
+            )}
             draggable={false}
           >
             <svg
@@ -50,6 +60,26 @@ export const Tab = ({
               />
             </svg>
             {!tab.pinned && tab.title}
+            {!tab.pinned && (
+              <svg
+                onClick={() => handleDelete(tab.title)}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className={cn(
+                  "size-4 translate-y-0.5 hover:text-red-500 hover:bg-gray-300 rounded-full p-0.5 duration-150",
+                  hover
+                )}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            )}
           </Link>
         </PopoverTrigger>
         <PopoverContent
