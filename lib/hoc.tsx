@@ -9,7 +9,12 @@ const withAnimation = (Component: any) => {
 
     return (
       <Reorder.Item
-        className="flex items-center "
+        className="flex items-center"
+        style={{
+          color: isActive ? "#000000" : "#99a1af",
+          background: "#ffffff",
+          borderTopColor: isActive ? "#4690E2" : "#e5e7eb",
+        }}
         id={props.tab.title}
         value={props.tab}
         drag
