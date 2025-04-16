@@ -89,6 +89,16 @@ const initialTabs = [
     image: "/",
     pinned: false,
   },
+  {
+    title: "acddsasag",
+    image: "/",
+    pinned: false,
+  },
+  {
+    title: "acdsadd3g",
+    image: "/",
+    pinned: false,
+  },
 ];
 
 const TabsContainer = () => {
@@ -164,19 +174,18 @@ const TabsContainer = () => {
             setTabs([...el, ...pinned]);
           }}
         >
-          {tabs
-            .map(
-              (tab) =>
-                !tab.pinned && (
-                  <AnimatedTab
-                    key={tab.title}
-                    tab={tab}
-                    handlePin={handlePin}
-                    handleDelete={handleDelete}
-                  />
-                )
-            )
-            .slice(0, max)}
+          {tabs.map(
+            (tab) =>
+              !tab.pinned && (
+                <AnimatedTab
+                  key={tab.title}
+                  tab={tab}
+                  handlePin={handlePin}
+                  handleDelete={handleDelete}
+                />
+              )
+          )}
+          {/* .slice(0, max) */}
         </Reorder.Group>
       </nav>
       {tabs.length > max && (
