@@ -18,7 +18,6 @@ export const Tab = ({
   className?: string;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [hover, setHover] = useState(false);
   const pathname = usePathname();
   const isActive = `/${tab.title}` === pathname;
   return (
@@ -30,14 +29,14 @@ export const Tab = ({
       style={{
         borderTopColor: isActive ? "#4690E2" : "#e5e7eb",
       }}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        setIsOpen((prev) => !prev);
+      }}
     >
-      <Popover open={isOpen} onOpenChange={setIsOpen}>
-        <PopoverTrigger onMouseEnter={() => setHover(true)}>
+      <Popover open={isOpen}>
+        <PopoverTrigger>
           <Link
-            onContextMenu={(e) => {
-              e.preventDefault();
-              setIsOpen((prev) => !prev);
-            }}
             href={tab.title}
             className={cn(
               "my-3 border-gray-200 flex gap-2 items-center px-3 border-r",
@@ -69,8 +68,8 @@ export const Tab = ({
                 strokeWidth={1.5}
                 stroke="currentColor"
                 className={cn(
-                  "size-4 translate-y-0.5 hover:text-red-500 hover:bg-gray-300 rounded-full p-0.5 duration-150",
-                  hover
+                  "size-4 translate-y-0.5 hover:text-red-500 hover:bg-gray-300 rounded-full p-0.5 duration-150 invisible",
+                  isActive && "visible"
                 )}
               >
                 <path
