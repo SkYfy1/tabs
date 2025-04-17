@@ -105,7 +105,6 @@ const TabsContainer = () => {
   const [tabs, setTabs] = useState<TabType[]>([]);
   const [showMore, setShowMore] = useState<boolean>(false);
   const [max, setMax] = useState(10);
-  // const [pinned, setPinned] = useState<TabType[]>([]);
   const handlePin = (title: string) => {
     setTabs((prev) =>
       prev.map((tab) => {
@@ -119,17 +118,10 @@ const TabsContainer = () => {
   };
 
   useEffect(() => {
-    console.log(window.innerWidth);
-
     const maxTabs = Math.ceil(window.innerWidth / 150);
-    console.log(maxTabs);
 
     setMax(maxTabs);
   }, []);
-
-  // useEffect(() => {
-  //   setPinned((prev) => [...prev, ...tabs.filter((tab) => tab.pinned)]);
-  // }, [tabs]);
 
   const pinned = tabs.filter((tab) => tab.pinned);
 
@@ -140,6 +132,7 @@ const TabsContainer = () => {
         const parsed = JSON.parse(saved);
         setTabs(parsed);
       } catch (error) {
+        console.log(error);
         setTabs(initialTabs);
       }
     } else {
