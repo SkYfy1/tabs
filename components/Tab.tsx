@@ -20,7 +20,7 @@ export const Tab = ({ tab, handlePin, className, handleDelete }: TabProps) => {
   return (
     <div
       className={cn(
-        "flex border-t items-center h-full w-fit max-w-44 after:content-[''] after:h-2 after:border-r-[0.5] after:translate-y-0.5 after:text-gray-200",
+        "flex border-t items-center h-full w-fit max-w-44 after:content-[''] after:h-4 after:border-r-[0.5] after:translate-y-0.5 after:text-gray-200",
         className
       )}
       style={{
@@ -36,7 +36,7 @@ export const Tab = ({ tab, handlePin, className, handleDelete }: TabProps) => {
           <Link
             href={tab.title}
             className={cn(
-              "my-3 border-gray-200 flex gap-2 items-center px-3",
+              "my-3 border-gray-200 flex gap-2.5 items-center px-3 capitalize",
               className
             )}
             draggable={false}
@@ -79,7 +79,7 @@ export const Tab = ({ tab, handlePin, className, handleDelete }: TabProps) => {
           </Link>
         </PopoverTrigger>
         <PopoverContent
-          className="text-[#99a1af] flex gap-2 w-fit text-sm cursor-pointer"
+          className="text-[#99a1af] flex gap-1 w-fit text-sm cursor-pointer p-2 rounded-sm shadow-sm"
           onClick={() => handlePin(tab.title)}
         >
           <Image src="/pin.svg" width={12} height={12} alt="pin" />
