@@ -148,7 +148,7 @@ const TabsContainer = () => {
 
   return (
     <header className="max-w-full w-screen flex items-center">
-      <nav className="flex w-screen overflow-x-hidden">
+      <nav className="flex w-screen">
         <div className="flex">
           {pinned?.map((tab) => (
             <Tab
