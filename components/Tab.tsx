@@ -35,7 +35,7 @@ export const Tab = ({
       }}
     >
       <Popover open={isOpen}>
-        <PopoverTrigger>
+        <PopoverTrigger asChild>
           <Link
             href={tab.title}
             className={cn(
