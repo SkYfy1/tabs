@@ -6,17 +6,14 @@ import withAnimation from "@/lib/hoc";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-export const Tab = ({
-  tab,
-  handlePin,
-  className,
-  handleDelete,
-}: {
+export interface TabProps {
   tab: TabType;
   handlePin: (title: string) => void;
   handleDelete: (title: string) => void;
   className?: string;
-}) => {
+}
+
+export const Tab = ({ tab, handlePin, className, handleDelete }: TabProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isActive = `/${tab.title}` === pathname;
