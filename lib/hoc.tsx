@@ -1,9 +1,12 @@
+import { TabProps } from "@/components/Tab";
 import { Reorder } from "motion/react";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const withAnimation = (Component: any) => {
-  const WrappedComponent = (props: any) => {
+const withAnimation = <P extends TabProps>(
+  Component: React.ComponentType<P>
+) => {
+  const WrappedComponent = (props: P) => {
     const pathname = usePathname();
     const isActive = pathname == `/${props.tab.title}`;
 
