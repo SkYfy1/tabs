@@ -23,7 +23,7 @@ export const Tab = ({
   return (
     <div
       className={cn(
-        "flex border-t items-center h-full w-fit max-w-44",
+        "flex border-t items-center h-full w-fit max-w-44 after:content-[''] after:h-2 after:border-r-[0.5] after:translate-y-0.5 after:text-gray-200",
         className
       )}
       style={{
@@ -39,7 +39,7 @@ export const Tab = ({
           <Link
             href={tab.title}
             className={cn(
-              "my-3 border-gray-200 flex gap-2 items-center px-3 border-r",
+              "my-3 border-gray-200 flex gap-2 items-center px-3",
               className
             )}
             draggable={false}
