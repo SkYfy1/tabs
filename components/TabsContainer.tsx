@@ -118,7 +118,7 @@ const TabsContainer = () => {
   };
 
   useEffect(() => {
-    const maxTabs = Math.ceil(window.innerWidth / 150);
+    const maxTabs = Math.ceil(window.innerWidth / 155);
 
     setMax(maxTabs);
   }, []);
@@ -147,8 +147,8 @@ const TabsContainer = () => {
   }, [tabs]);
 
   return (
-    <header className="max-w-full w-screen flex items-center">
-      <nav className="flex w-screen">
+    <header className="max-w-full w-screen flex items-center relative">
+      <nav className="flex w-screen overflow-hidden">
         <div className="flex">
           {pinned?.map((tab) => (
             <Tab
@@ -183,7 +183,7 @@ const TabsContainer = () => {
       </nav>
       {tabs.length > max && (
         <button
-          className="p-4 bg-white h-full"
+          className="group p-4 bg-white h-full hover:bg-blue-500 duration-300"
           onClick={() => setShowMore((prev) => !prev)}
         >
           <svg
@@ -192,7 +192,7 @@ const TabsContainer = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-4"
+            className="size-4 group-hover:rotate-180 group-hover:stroke-white duration-300"
           >
             <path
               strokeLinecap="round"
@@ -203,21 +203,20 @@ const TabsContainer = () => {
         </button>
       )}
       {showMore && (
-        <div className="absolute right-1 top-33 p-4 border-1 rounded-md bg-white flex flex-col justify-center items-center">
-          {tabs
-            .slice(max)
-            .map(
-              (tab) =>
-                !tab.pinned && (
+        <div className="absolute right-1 top-0 translate-y-1/2 p-1.5 border-1 rounded-sm bg-white flex flex-col justify-center items-center">
+          {tabs.slice(max).map(
+            (tab) =>
+              !tab.pinned && (
+                <div key={tab.title} className="border-b">
                   <Tab
-                    key={tab.title}
                     tab={tab}
                     handlePin={handlePin}
                     handleDelete={handleDelete}
                     className="border-none"
                   />
-                )
-            )}
+                </div>
+              )
+          )}
         </div>
       )}
     </header>
