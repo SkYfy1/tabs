@@ -65,7 +65,7 @@ export const Tab = ({ tab, handlePin, className, handleDelete }: TabProps) => {
                 strokeWidth={1.5}
                 stroke="currentColor"
                 className={cn(
-                  "size-4 translate-y-0.5 hover:text-red-500 hover:bg-gray-300 rounded-full p-0.5 duration-150 invisible",
+                  "size-3 translate-y-0.5 hover:text-white bg-[#7F858D] text-white hover:bg-red-400 rounded-full p-0.5 duration-200 invisible",
                   isActive && "visible"
                 )}
               >
